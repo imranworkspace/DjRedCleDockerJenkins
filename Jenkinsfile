@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         VENV = "myenv"
-        PYTHON = "C:\\Users\\imran\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"   // <-- change this if your Python is installed elsewhere
+        PYTHON = "C:\\Users\\imran\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"   // <-- adjust if Python path is different
         DOCKER_IMAGE = "imrandocker24/DjRedCleDockerJenkins:latest"
     }
 
@@ -18,12 +18,12 @@ pipeline {
             steps {
                 bat "%PYTHON% -m venv %VENV%"
                 bat "%VENV%\\Scripts\\python -m pip install --upgrade pip"
-                bat "%VENV%\\Scripts\\pip install -r requirnments.txt"
+                bat "%VENV%\\Scripts\\pip install -r requirements.txt"
             }
         }
 
-        stage('run migrations'){
-            steps{
+        stage('Run Migrations') {
+            steps {
                 bat "%VENV%\\Scripts\\python manage.py makemigrations"
                 bat "%VENV%\\Scripts\\python manage.py migrate"
             }
@@ -33,10 +33,9 @@ pipeline {
             steps {
                 bat "%VENV%\\Scripts\\python manage.py test myapp.tests.test_views"
                 bat "%VENV%\\Scripts\\python manage.py test myapp.tests.test_models"
-                
             }
         }
-        // docker deployment 
+
         stage('Build Docker Image') {
             steps {
                 bat "docker build -t %DOCKER_IMAGE% ."
@@ -71,6 +70,5 @@ pipeline {
             junit '**/TEST-*.xml'
             archiveArtifacts artifacts: '**/staticfiles/**/*', fingerprint: true
         }
-    }
     }
 }
