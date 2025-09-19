@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8006:8006"
+      - "8007:8007"
     depends_on:
       - redis
 
