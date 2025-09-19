@@ -4,13 +4,13 @@ pipeline {
     environment {
         VENV = "myenv"
         PYTHON = "C:\\Users\\imran\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"   // <-- adjust if Python path is different
-        DOCKER_IMAGE = "imrandocker24/DjRedCleDockerJenkins:latest"
+        DOCKER_IMAGE = "imrandocker24/djredcledockerjenkins:latest"
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/imranworkspace/Jenkins'
+                git branch: 'master', url: 'https://github.com/imranworkspace/DjRedCleDockerJenkins'
             }
         }
 
@@ -56,7 +56,7 @@ pipeline {
                 sshagent(['your-ssh-cred-id']) {
                     sh '''
                         ssh user@your-server "
-                          docker pull imrandocker24/DjRedCleDockerJenkins:latest &&
+                          docker pull imrandocker24/djredcledockerjenkins:latest &&
                           docker-compose -f docker-compose.yml up -d --force-recreate
                         "
                     '''
