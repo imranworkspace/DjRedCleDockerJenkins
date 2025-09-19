@@ -8,6 +8,6 @@ class HomeViewTestCase(TestCase):
         self.assertEqual(response.status_code,200)
 
     def test_home_template_content(self):
-        response = self.client.get('/')
+        response = self.client.get('/home/')
         print('####calling test_home_template_content')
         self.assertContains(response,'<title>') # or any string you have in your template
