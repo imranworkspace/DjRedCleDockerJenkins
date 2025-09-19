@@ -43,13 +43,16 @@ pipeline {
         }
 
         stage('Push Docker Image') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    bat "echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin"
-                    bat "docker push %DOCKER_IMAGE%"
-                }
-            }
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+            // Login without pipe
+            bat """
+                docker login -u %DOCKER_USER% -p %DOCKER_PASS%
+                docker push %DOCKER_IMAGE%
+            """
         }
+    }
+}
 
         stage('Deploy to Server') {
             steps {
