@@ -56,9 +56,9 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
-                sshagent(['my-ssh-cred-id']) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'my-ssh-cred-id', keyFileVariable: 'SSH_KEY')]) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no deploy@myapp.example.com "
+                        ssh -i $SSH_KEY -o StrictHostKeyChecking=no deploy@myapp.example.com "
                           docker pull imrandocker24/djredcledockerjenkins:latest &&
                           docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
                         "
