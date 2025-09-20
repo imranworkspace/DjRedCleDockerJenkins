@@ -70,12 +70,12 @@ pipeline {
         stage('Deploy to Server') {
             steps {
                 sshagent(['my-server-ssh-key']) {
-                    sh '''
-                        ssh deploy@DjRedCleDockerJenkins"
-                        docker pull imrandocker24/djredcledockerjenkins:latest &&
-                        docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
+                    sh """
+                        ssh ZUNAISHA\\$@your-server "
+                          docker pull imrandocker24/djredcledockerjenkins:latest &&
+                          docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
                         "
-                    '''
+                    """
                 }
             }
         }
