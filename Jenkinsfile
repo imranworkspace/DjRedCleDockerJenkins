@@ -53,19 +53,24 @@ pipeline {
             }
         }
 
+        stage('Run Container') {
+            steps {
+                bat 'docker-compose -f docker-compose.yml up -d --force-recreate'
+            }
+        }
 
+        // if docker and jenkins both are same machine then no need below one 
         // stage('Deploy to Server') {
         //     steps {
-        //         withCredentials([sshUserPrivateKey(credentialsId: 'my-server-ssh-key', keyFileVariable: 'SSH_KEY')]) {
-        //             sh '''
-        //                 ssh -i $SSH_KEY -o StrictHostKeyChecking=no imrandocker24@myapp.example.com "
-        //                   docker pull imrandocker24/djredcledockerjenkins:latest &&
-        //                   docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
-        //                 "
+        //         withCredentials([sshUserPrivateKey(credentialsId: 'my-ssh-cred-key', keyFileVariable: 'SSH_KEY')]) {
+        //             bat '''
+        //                 ssh -i %SSH_KEY% -o StrictHostKeyChecking=no deploy@myapp.example.com ^
+        //                 "docker pull imrandocker24/djredcledockerjenkins:latest && ^
+        //                 docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate"
         //             '''
         //         }
         //     }
-        // }
+        // } 
 
     }
 
