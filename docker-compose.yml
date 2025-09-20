@@ -3,7 +3,7 @@ services:
   # ----------------- Django -----------------
   django:
     build: .
-    container_name: django_app
+    container_name: django_app2
     command: >
       sh -c "python manage.py migrate --noinput &&
              python manage.py runserver 0.0.0.0:8007"
@@ -24,7 +24,7 @@ services:
   # ----------------- Celery Worker -----------------
   celery:
     build: .
-    container_name: celery_worker
+    container_name: celery_worker2
     command: celery -A DjRedCleDockerJenkins worker -l info
     volumes:
       - .:/app
@@ -35,7 +35,7 @@ services:
   # ----------------- Celery Beat -----------------
   celery-beat:
     build: .
-    container_name: celery_beat
+    container_name: celery_beat2
     command: celery -A DjRedCleDockerJenkins beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     volumes:
       - .:/app
@@ -46,7 +46,7 @@ services:
   # ----------------- Flower Dashboard -----------------
   flower:
     build: .   # use your Django build, not mher/flower
-    container_name: flower
+    container_name: flower2
     command: celery -A DjRedCleDockerJenkins flower --port=5555
     ports:
       - "5555:5555"
@@ -62,7 +62,7 @@ services:
   # ----------------- NGNIX -----------------
   nginx:
       image: nginx:alpine
-      container_name: nginx
+      container_name: nginx2
       volumes:
         - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
         - ./app/static:/app/static
