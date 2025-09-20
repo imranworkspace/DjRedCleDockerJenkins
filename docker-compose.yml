@@ -46,10 +46,10 @@ services:
   # ----------------- Flower Dashboard -----------------
   flower:
     build: .   # use your Django build, not mher/flower
-    container_name: flower2
-    command: celery -A DjRedCleDockerJenkins flower --port=5556
+    container_name: flower
+    command: celery -A DjRedCleDockerJenkins flower --port=5555
     ports:
-      - "5556:5556"
+      - "5555:5555"
     volumes:
       - .:/app
     depends_on:
