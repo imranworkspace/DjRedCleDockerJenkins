@@ -71,11 +71,11 @@ pipeline {
             steps {
                 sshagent(['my-server-ssh-key']) {
                     sh '''
-                        ssh ZUNAISHA\$@your-server "
-                          docker pull imrandocker24/djredcledockerjenkins:latest &&
-                          docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
-                        "
-                    '''
+                    ssh myserver "
+                    docker pull imrandocker24/djredcledockerjenkins:latest &&
+                    docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
+                    "
+                '''
                 }
             }
         }
