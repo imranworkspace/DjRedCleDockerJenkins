@@ -44,7 +44,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'imrandocker24', passwordVariable: 'Zunnu@dell@786')]) {
                     // Login without pipe
                     bat """
                         docker login -u %DOCKER_USER% -p %DOCKER_PASS%
