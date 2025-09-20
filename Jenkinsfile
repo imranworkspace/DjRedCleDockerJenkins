@@ -54,18 +54,32 @@ pipeline {
     }
 }
 
-        stage('Deploy to Server') {
+        '''stage('Deploy to Server') {
             steps {
-                sshagent(['your-ssh-cred-id']) {
+                sshagent(['DjRedCleDockerJenkins']) {
                     sh '''
-                        ssh user@your-server "
+                        ssh ZUNAISHA$@your-server "
                           docker pull imrandocker24/djredcledockerjenkins:latest &&
                           docker-compose -f docker-compose.yml up -d --force-recreate
                         "
                     '''
                 }
             }
+        }'''
+
+        stage('Deploy to Server') {
+            steps {
+                sshagent(['my-server-ssh-key']) {
+                    sh '''
+                        ssh deploy@DjRedCleDockerJenkins"
+                        docker pull imrandocker24/djredcledockerjenkins:latest &&
+                        docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
+                        "
+                    '''
+                }
+            }
         }
+
     }
 
     post {
