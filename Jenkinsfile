@@ -56,11 +56,11 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
-                sshagent(['my-server-ssh-key']) {
+                sshagent(['my-ssh-cred-id']) {
                     sh '''
-                        ssh myserver "
-                        docker pull imrandocker24/djredcledockerjenkins:latest &&
-                        docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
+                        ssh -o StrictHostKeyChecking=no deploy@myapp.example.com "
+                          docker pull imrandocker24/djredcledockerjenkins:latest &&
+                          docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
                         "
                     '''
                 }
@@ -69,10 +69,5 @@ pipeline {
 
     }
 
-    post {
-        always {
-            junit allowEmptyResults: true, testResults: 'reports/*.xml'
-        }
-    }
 
 }
