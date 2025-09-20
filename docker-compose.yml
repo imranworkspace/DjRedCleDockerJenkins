@@ -57,7 +57,7 @@ services:
       - redis
       - celery
     environment:
-      - DJANGO_SETTINGS_MODULE=DjCelRedDocker.settings
+      - DJANGO_SETTINGS_MODULE=DjRedCleDockerJenkins.settings
 
   # ----------------- NGNIX -----------------
   nginx:
