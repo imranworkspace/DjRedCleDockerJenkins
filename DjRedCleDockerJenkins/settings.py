@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e@dn)&bn+)9ir-!nc$xec7&s77=i28(kp_yt3u3afq*%i*u#nc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.56.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -127,8 +127,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Celery Redis configs
-CELERY_BROKER_URL='redis://192.168.56.1:6379/101'
-CELERY_RESULT_BACKEND='redis://192.168.56.1:6379/101'
+CELERY_BROKER_URL='redis://127.0.0.1:6379/101'
+CELERY_RESULT_BACKEND='redis://127.0.0.1:6379/101'
 
 
 # for docker,jenkins

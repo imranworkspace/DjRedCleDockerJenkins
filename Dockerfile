@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirnments.txt
 COPY . /app/
 
 # Collect static files (done at container start)
-CMD ["gunicorn", "DjRedCleDockerJenkins.wsgi:application", "--bind", " 192.168.56.1:8007"]
+CMD ["gunicorn", "DjRedCleDockerJenkins.wsgi:application", "--bind", "0.0.0.0:8007"]
