@@ -43,39 +43,26 @@ pipeline {
         }
 
         stage('Push Docker Image') {
-    steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-            // Login without pipe
-            bat """
-                docker login -u %DOCKER_USER% -p %DOCKER_PASS%
-                docker push %DOCKER_IMAGE%
-            """
-        }
-    }
-}
-
-        '''stage('Deploy to Server') {
             steps {
-                sshagent(['DjRedCleDockerJenkins']) {
-                    sh '''
-                        ssh ZUNAISHA$@your-server "
-                          docker pull imrandocker24/djredcledockerjenkins:latest &&
-                          docker-compose -f docker-compose.yml up -d --force-recreate
-                        "
-                    '''
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    // Login without pipe
+                    bat """
+                        docker login -u %DOCKER_USER% -p %DOCKER_PASS%
+                        docker push %DOCKER_IMAGE%
+                    """
                 }
             }
-        }'''
+        }
 
         stage('Deploy to Server') {
             steps {
                 sshagent(['my-server-ssh-key']) {
-                    sh '''
-                        ssh ZUNAISHA$@your-server "
-                        docker pull imrandocker24/djredcledockerjenkins:latest &&
-                        docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
-                        "
-                    '''
+                    sh """
+                    ssh ZUNAISHA\\$@your-server "
+                    docker pull imrandocker24/djredcledockerjenkins:latest &&
+                    docker-compose -f /opt/myapp/docker-compose.yml up -d --force-recreate
+                    "
+                """
                 }
             }
         }
