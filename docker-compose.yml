@@ -13,6 +13,8 @@ services:
       - "8007:8007"
     depends_on:
       - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
 
   # ----------------- Redis -----------------
   redis:
