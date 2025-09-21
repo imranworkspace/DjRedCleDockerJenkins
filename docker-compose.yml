@@ -19,7 +19,7 @@ services:
   # ----------------- Redis -----------------
   redis:
     image: redis:7-alpine
-    container_name: redis2
+    container_name: redis2 # service name is redis2 so in settings also we need to specify
     ports:
       - "6379:6379"
 
