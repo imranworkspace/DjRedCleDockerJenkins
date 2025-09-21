@@ -7,24 +7,23 @@ services:
     command: >
       sh -c "python manage.py migrate --noinput &&
              python manage.py runserver 0.0.0.0:8007"
-    volumes:
-      - .:/app
     ports:
       - "8007:8007"
-    depends_on:
-      - redis
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/1
       - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    depends_on:
+      - redis
+      - celery
+    volumes:
+      - .:/app
 
   # ----------------- Redis -----------------
   redis:
     image: redis:7-alpine
-    container_name: redis # change the redis name
+    container_name: redis
     ports:
       - "6379:6379"
-    networks:
-      - mynet # redis will resolve inside the mynet network.
 
   # ----------------- Celery Worker -----------------
   celery:

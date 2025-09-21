@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -132,5 +132,8 @@ CELERY_RESULT_BACKEND='redis://127.0.0.1:6379/101'
 '''
 
 # for docker,jenkins
-CELERY_BROKER_URL = "redis://redis:6379/1"
-CELERY_RESULT_BACKEND = "redis://redis:6379/1"
+'''CELERY_BROKER_URL = "redis://redis:6379/1"
+CELERY_RESULT_BACKEND = "redis://redis:6379/1"'''
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://127.0.0.1:6379/1")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://127.0.0.1:6379/1")

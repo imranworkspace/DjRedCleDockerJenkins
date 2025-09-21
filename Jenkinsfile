@@ -2,6 +2,8 @@ pipeline {
     agent any
 
     environment {
+        CELERY_BROKER_URL = "redis://127.0.0.1:6379/1"
+        CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/1"
         VENV = "myenv"
         PYTHON = "C:\\Users\\imran\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"   // <-- adjust if Python path is different
         DOCKER_IMAGE = "imrandocker24/djredcledockerjenkins:latest"
