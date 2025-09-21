@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'djredceldocker_db',
         'USER': 'postgres',# your username
         'PASSWORD': 'imrandell',
-        'HOST': 'DjRedCleDockerJenkins-db-1',  # hostname must be your Project Name 'DjRedCleDockerJenkins' collect from wsgi.py file
+        'HOST': 'db',  # pass database service name ex: 'db'
         'PORT': '5432',       # Default PostgreSQL port
     }
 }

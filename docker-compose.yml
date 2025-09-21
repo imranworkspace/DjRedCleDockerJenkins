@@ -15,6 +15,7 @@ services:
       - .:/app
     depends_on:
       - redis
+      - db
 
   # ----------------- Postgres Database -----------------
   db:
@@ -86,7 +87,9 @@ services:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - ./app/static:/app/static
       - ./app/media:/app/media
+      
     ports:
       - "80:80"
     depends_on:
       - django
+    
