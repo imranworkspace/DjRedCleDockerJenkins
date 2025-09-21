@@ -76,10 +76,24 @@ WSGI_APPLICATION = 'DjRedCleDockerJenkins.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+'''
+
+# for accessing postgresql 
+# <<cmd>> docker exec -it d8278c95e337 psql -U postgres
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'djredceldocker_db',
+        'USER': 'postgres',# your username
+        'PASSWORD': 'imrandell',
+        'HOST': 'DjRedCleDockerJenkins-db-1',  # hostname must be your Project Name 'DjRedCleDockerJenkins' collect from wsgi.py file
+        'PORT': '5432',       # Default PostgreSQL port
     }
 }
 

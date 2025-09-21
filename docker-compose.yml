@@ -16,6 +16,16 @@ services:
     depends_on:
       - redis
 
+  # ----------------- Postgres Database -----------------
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: djredceldocker_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: imrandell
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
   # ----------------- Redis -----------------
   redis:
     image: redis:7-alpine
