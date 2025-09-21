@@ -6,6 +6,10 @@ set -e
 echo "Applying database migrations..."
 python manage.py migrate --noinput
 
+# Ensure the database is writable
+touch /django_app2/db.sqlite3
+chmod 666 /django_app2/db.sqlite3
+
 echo "Creating superuser..."
 python manage.py shell <<EOF
 from django.contrib.auth import get_user_model
