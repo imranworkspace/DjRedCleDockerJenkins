@@ -19,9 +19,10 @@ services:
   # ----------------- Redis -----------------
   redis:
     image: redis:7-alpine
-    container_name: redis # change the redis name 
     ports:
       - "6379:6379"
+    networks:
+      - mynet # redis will resolve inside the mynet network.
 
   # ----------------- Celery Worker -----------------
   celery:
