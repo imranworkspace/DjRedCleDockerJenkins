@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e@dn)&bn+)9ir-!nc$xec7&s77=i28(kp_yt3u3afq*%i*u#nc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','192.168.56.1']
 
 
 # Application definition
@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'djredceldocker_db',
         'USER': 'postgres',# your username
         'PASSWORD': 'imrandell',
-        'HOST': 'db',  # pass database service name ex: 'db'
+        'HOST': '192.168.56.1' ,  # pass database service name ex: 'db'    
         'PORT': '5432',       # Default PostgreSQL port
     }
 }
