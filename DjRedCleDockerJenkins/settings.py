@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'djredceldocker_db',
         'USER': 'postgres',# your username
         'PASSWORD': 'imrandell',
-        'HOST': '127.0.0.1' ,  # pass database service name ex: 'db'    
+        'HOST': 'db' ,  # pass database service name ex: 'db'    
         'PORT': '5432',       # Default PostgreSQL port
     }
 }
