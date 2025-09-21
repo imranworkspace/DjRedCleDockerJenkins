@@ -18,17 +18,19 @@ services:
       - redis 
 
   # ----------------- Postgres Database -----------------
+
   db:
-    container_name: db
-    image: postgres:15 
-    ports:
-    - "5432:5432"
-    environment:
-      POSTGRES_DB: djredceldocker_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: imrandell
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      container_name: db
+      image: postgres
+      environment:
+        - POSTGRES_DB=djredceldocker_db
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=imrandell
+      restart: always
+      volumes:
+        - bancodedadospg:/var/lib/postgresql/data
+      ports:
+        - 5432:5432
 
   # ----------------- Redis -----------------
   redis:
