@@ -8,7 +8,7 @@ def mul(a,b):
     return a*b
 
 # increase count using cache value stored into redis 
-@shared_task
+@shared_task(name='myapp.tasks.visit_cache')
 def visit_cache():
     count = cache.get('visits',0)
     count +=1

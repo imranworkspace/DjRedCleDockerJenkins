@@ -34,5 +34,6 @@ def viewall(request,pk=None):
 
 def cel_view(request):
     visits = visit_cache.delay()
+    muls = mul.delay(10,20)
     print('task= ',visits)
-    return JsonResponse({'resp':f'{visits}'},status=status.HTTP_200_OK)
+    return JsonResponse({'resp':f'visit - {visits} multiplication-{muls}'},status=status.HTTP_200_OK)
