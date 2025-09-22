@@ -72,26 +72,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DjRedCleDockerJenkins.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Database
 # for accessing postgresql 
 # <<cmd>> docker exec -it d8278c95e337 psql -U postgres
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djredceldocker_db',
-        'USER': 'postgres',# your username
-        'PASSWORD': 'imrandell',
-        'HOST': 'db' ,  # pass database service name ex: 'db'    
-        'PORT': '5432',       # Default PostgreSQL port
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'djredceldocker_db',
+#         'USER': 'postgres',# your username
+#         'PASSWORD': 'imrandell',
+#         'HOST': 'db' ,  # pass database service name ex: 'db'    
+#         'PORT': '5432',       # Default PostgreSQL port
+#     }
+# }
 
 
 # Password validation
