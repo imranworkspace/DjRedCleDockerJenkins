@@ -26,9 +26,8 @@ pipeline {
 
         stage('Run Migrations') {
             steps {
-                // bat "%VENV%\\Scripts\\python manage.py makemigrations"
-                // bat "%VENV%\\Scripts\\python manage.py migrate"
-                bat "docker-compose run --rm django_app2 python manage.py migrate --noinput"
+                bat "%VENV%\\Scripts\\python manage.py makemigrations"
+                bat "%VENV%\\Scripts\\python manage.py migrate"
             }
         }
 
